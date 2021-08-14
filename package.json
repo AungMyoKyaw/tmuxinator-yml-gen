@@ -1,0 +1,29 @@
+{
+  "name": "tmuxinator-yml-gen",
+  "version": "1.0.0",
+  "description": "tmuxinator-yml-gen",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 0",
+    "demo": "node src/cli.js"
+  },
+  "files": ["src"],
+  "bin": {
+    "tmuxinator-yml-gen": "./src/cli.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/AungMyoKyaw/tmuxinator-yml-gen.git"
+  },
+  "keywords": ["tmuxinator-yml-gen", "tmuxinator"],
+  "author": "Aung Myo Kyaw",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/AungMyoKyaw/tmuxinator-yml-gen/issues"
+  },
+  "homepage": "https://github.com/AungMyoKyaw/tmuxinator-yml-gen#readme",
+  "dependencies": {
+    "js-yaml": "^4.1.0",
+    "meow": "^10.1.1"
+  },
+  "type": "module"
+}

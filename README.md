@@ -10,6 +10,8 @@ here is my way of creating tmuxinator yaml</br>
 may be u are using better solution</br>
 i hope it may help u ❄️
 
+<img src="./assets/demo.gif" align="center" alt="tmuxinator-yml-gen" width="100%"/>
+
 ## Install
 
 ```shell

@@ -6,7 +6,7 @@
     "test": "echo \"Error: no test specified\" && exit 0",
     "demo": "node src/cli.js --name=tmuxinator-yml-gen --cp=true --editor=vi"
   },
-  "files": ["src"],
+  "files": ["src", "assets"],
   "bin": {
     "mx-yml-gen": "./src/cli.js",
     "tmuxinator-yml-gen": "./src/cli.js"

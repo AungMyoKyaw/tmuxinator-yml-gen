@@ -7,12 +7,12 @@ import { Utilities } from './utilities.js';
 const cli = meow(
   `
 	Usage
-	  $ tmuxinator-yml-gen
+	  $ mx-yml-gen
   Options
     --name
     --editor
 	Examples
-	  $ tmuxinator-yml-gen --name=amk --editor=vim
+	  $ mx-yml-gen --name=amk --editor=vim
 `,
   {
     importMeta: import.meta,

@@ -45,11 +45,13 @@ class Utilities {
     const dirlist = this.listDir();
     const rawjson = this.templateJSON();
     const windowtemplatejson = rawjson['windows'][0]['window-name'];
+    const { editor } = cliFlags;
     const tmuxinatorJSON = {
       name: cliFlags.name,
       windows: dirlist.map((dirname) => {
         const windowjson = { ...windowtemplatejson };
         windowjson['root'] = dirname;
+        windowjson['panes'][0] = editor;
         const windowName = this.windowNameGen(dirname);
         const json = {
           [windowName]: windowjson,

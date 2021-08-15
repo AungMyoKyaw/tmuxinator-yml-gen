@@ -1,6 +1,6 @@
 # tmuxinator-yml-gen
 
-> tmuxinator-yml-gen
+> tmuxinator yaml file generator
 
 ## Use Case
 
@@ -18,7 +18,7 @@ npm install -g tmuxinator-yml-gen
 
 ## Usage
 
-_first switch to project list root folder_
+_switch to project list root folder_
 
 ```
 .

@@ -105,5 +105,6 @@ dist
 
 # tmuxinator-yml-gen
 tmuxinator-yml-gen/
+tmuxinator-yaml-files/
 
 

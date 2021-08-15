@@ -1,30 +1,37 @@
 import fs from 'fs';
+import path, { dirname } from 'path';
 import yaml from 'js-yaml';
-import path from 'path';
 import { cwd } from 'process';
+import { fileURLToPath } from 'url';
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
 
 class Utilities {
   static listDir() {
     const results = fs.readdirSync('./', { withFileTypes: true });
     const filterDir = results
-      .filter((x) => x.isDirectory())
+      .filter((x) => {
+        return x.isDirectory() && x.name != 'tmuxinator-yaml-files';
+      })
       .map((x) => path.join(cwd(), x.name));
+
     return filterDir;
   }
 
   static templateJSON() {
-    const doc = yaml.load(fs.readFileSync('data/template.yml', 'utf8'));
+    const doc = yaml.load(
+      fs.readFileSync(path.join(__dirname, 'data/template.yml'), 'utf8')
+    );
     return doc;
   }
 
   static windowNameGen(pathstr) {
-    const regex = /\w+$/;
-    const matchstr = pathstr.match(regex);
-    return matchstr[0];
+    return pathstr.split('/').slice(-1)[0];
   }
 
   static writeyaml(dumpYAML, name) {
-    const dirname = './tmuxinator-yml-gen';
+    const dirname = './tmuxinator-yaml-files';
     const dirExists = fs.existsSync(dirname);
     if (!dirExists) {
       fs.mkdirSync(dirname);
@@ -39,6 +46,11 @@ class Utilities {
       dereference: true,
     });
     console.log('coyp');
+  }
+
+  static showSuccessMessage(pathName) {
+    const successMessage = `Generated yaml file will be placed on \n => ${pathName}`;
+    console.log(successMessage);
   }
 
   static tmuxinatorYAMLgen(cliFlags) {
@@ -65,6 +77,7 @@ class Utilities {
       lineWidth: -1,
     });
     const ymlPath = this.writeyaml(dumpYAML, cliFlags.name);
+    this.showSuccessMessage(ymlPath);
     if (cliFlags.copy2Config) {
       // this.copyToConfFolder(ymlPath, cliFlags.name);
     }

@@ -1,6 +1,6 @@
 {
   "name": "tmuxinator-yml-gen",
-  "version": "1.0.1",
+  "version": "1.1.0",
   "description": "tmuxinator-yml-gen",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 0",

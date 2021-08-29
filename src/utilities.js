@@ -1,4 +1,5 @@
-import fs from 'fs';
+import fs from 'fs-extra';
+import os from 'os';
 import path, { dirname } from 'path';
 import yaml from 'js-yaml';
 import { cwd } from 'process';
@@ -41,11 +42,11 @@ class Utilities {
   }
 
   static copyToConfFolder(filepath, name) {
-    console.log('coyp');
-    fs.copyFileSync(filepath, `~/.tmuxinator/${name}.yml`, {
-      dereference: true,
-    });
-    console.log('coyp');
+    const homedir = os.homedir()
+    const src = filepath;
+    const dest = `${homedir}/.tmuxinator/${name}.yml`;
+    const options = { dereference: true };
+    fs.copySync(filepath, dest, options);
   }
 
   static showSuccessMessage(pathName) {
@@ -79,7 +80,7 @@ class Utilities {
     const ymlPath = this.writeyaml(dumpYAML, cliFlags.name);
     this.showSuccessMessage(ymlPath);
     if (cliFlags.copy2Config) {
-      // this.copyToConfFolder(ymlPath, cliFlags.name);
+      this.copyToConfFolder(ymlPath, cliFlags.name);
     }
   }
 }

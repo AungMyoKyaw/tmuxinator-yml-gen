@@ -11,8 +11,9 @@ const cli = meow(
   Options
     --name
     --editor
+    --cp [copy to config]
 	Examples
-	  $ mx-yml-gen --name=amk --editor=vim
+	  $ mx-yml-gen --name=amk --editor=vim --cp=true
 `,
   {
     importMeta: import.meta,
@@ -26,12 +27,12 @@ const cli = meow(
         isRequired: true,
         default: 'nvim',
       },
-      // copy2config: {
-      //   type: 'boolean',
-      //   isRequired: false,
-      //   alias: 'cp',
-      //   default: false,
-      // },
+      copy2config: {
+        type: 'boolean',
+        isRequired: false,
+        alias: 'cp',
+        default: false,
+      },
     },
   }
 );

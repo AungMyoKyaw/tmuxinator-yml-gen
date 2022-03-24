@@ -4,7 +4,7 @@
   "description": "tmuxinator-yml-gen",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 0",
-    "demo": "node src/cli.js --name=tmuxinator-yml-gen --cp=true --editor=vi"
+    "demo": "node src/cli.js --name=tmuxinator-yml-gen --cp=false --editor=vi --mode=amk"
   },
   "files": [
     "src",

@@ -20,10 +20,12 @@ class Utilities {
     return filterDir;
   }
 
-  static templateJSON() {
-    const doc = yaml.load(
-      fs.readFileSync(path.join(__dirname, 'data/template.yml'), 'utf8')
+  static templateJSON(mode = 'default') {
+    const templateLocation = path.join(
+      __dirname,
+      mode === 'amk' ? 'data/template-amk.yml' : 'data/template.yml'
     );
+    const doc = yaml.load(fs.readFileSync(templateLocation, 'utf8'));
     return doc;
   }
 
@@ -42,7 +44,7 @@ class Utilities {
   }
 
   static copyToConfFolder(filepath, name) {
-    const homedir = os.homedir()
+    const homedir = os.homedir();
     const src = filepath;
     const dest = `${homedir}/.tmuxinator/${name}.yml`;
     const options = { dereference: true };
@@ -56,7 +58,7 @@ class Utilities {
 
   static tmuxinatorYAMLgen(cliFlags) {
     const dirlist = this.listDir();
-    const rawjson = this.templateJSON();
+    const rawjson = this.templateJSON(cliFlags.mode);
     const windowtemplatejson = rawjson['windows'][0]['window-name'];
     const { editor } = cliFlags;
     const tmuxinatorJSON = {

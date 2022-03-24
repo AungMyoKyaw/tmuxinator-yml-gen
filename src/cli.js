@@ -12,8 +12,9 @@ const cli = meow(
     --name
     --editor
     --cp [copy to config]
+    --mode
 	Examples
-	  $ mx-yml-gen --name=amk --editor=vim --cp=true
+	  $ mx-yml-gen --name=amk --editor=vim --cp=true --mode=amk
 `,
   {
     importMeta: import.meta,
@@ -32,6 +33,10 @@ const cli = meow(
         isRequired: false,
         alias: 'cp',
         default: false,
+      },
+      mode: {
+        type: 'string',
+        default: 'default'
       },
     },
   }

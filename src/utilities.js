@@ -61,12 +61,16 @@ class Utilities {
     const rawjson = this.templateJSON(cliFlags.mode);
     const windowtemplatejson = rawjson['windows'][0]['window-name'];
     const { editor } = cliFlags;
+    let editorCommand = editor;
+    if (editorCommand == 'none') {
+      editorCommand = null;
+    }
     const tmuxinatorJSON = {
       name: cliFlags.name,
       windows: dirlist.map((dirname) => {
         const windowjson = { ...windowtemplatejson };
         windowjson['root'] = dirname;
-        windowjson['panes'][0] = editor;
+        windowjson['panes'][0] = editorCommand;
         const windowName = this.windowNameGen(dirname);
         const json = {
           [windowName]: windowjson,

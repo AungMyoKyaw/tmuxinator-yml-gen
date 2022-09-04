@@ -10,11 +10,12 @@ const cli = meow(
 	  $ mx-yml-gen
   Options
     --name
-    --editor
+    --editor [use none if u don't want to open editor / default is nvim]
     --cp [copy to config]
     --mode
 	Examples
 	  $ mx-yml-gen --name=amk --editor=vim --cp=true --mode=amk
+	  $ mx-yml-gen --name=amk --editor=none --cp=true --mode=amk
 `,
   {
     importMeta: import.meta,

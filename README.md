@@ -1,18 +1,17 @@
 # tmuxinator-yml-gen
 
-> tmuxinator yaml file generator
+> **Tmuxinator YAML file generator**
 
 ## Use Case
 
-- imagine your work need to check on 10+ project and switching across project
-- tired of creating tmuxinator yaml for 10+ project folder
-- here is my way of creating tmuxinator yaml
-- may be u are using better solution</br>
-- i hope it may help u ❄️
+- If your work requires you to check on 10+ projects and switch between them frequently.
+- Tired of manually creating Tmuxinator YAML files for multiple project folders?
+- Here’s a simple way to generate Tmuxinator YAML files automatically.
+- You might already have a better solution, but I hope this helps you ❄️
 
 <img src="./assets/demo.gif" align="center" alt="tmuxinator-yml-gen" width="100%"/>
 
-## Install
+## Installation
 
 ```shell
 npm install -g tmuxinator-yml-gen
@@ -20,7 +19,7 @@ npm install -g tmuxinator-yml-gen
 
 ## Usage
 
-_switch to project list root folder_
+Switch to the root folder containing your project directories:
 
 ```
 .
@@ -36,49 +35,44 @@ _switch to project list root folder_
 └── project-9
 ```
 
+Run the following command:
+
 ```shell
-Usage
+mx-yml-gen --name=project-1 --editor=nvim --cp=true
+```
+
+```shell
+Usage:
   $ mx-yml-gen
-Options
-  --name
-  --editor
-  --cp [copy to config]
-Examples
+Options:
+  --name    [Specify the session name]
+  --editor  [Specify the editor to use]
+  --cp      [Copy the generated file to the tmuxinator config folder]
+Examples:
   $ mx-yml-gen --name=amk --editor=vim --cp=true
 ```
 
-_generated yaml file will be place on current dir of `tmuxinator-yml-gen` folder_
+The generated YAML file will be placed in the `tmuxinator-yml-gen` folder in the current directory.
 
-_u may need to copy yaml file to `~/.tmuxinator` folder or use --cp=true option_
+You may need to copy the YAML file manually to `~/.tmuxinator`, or use the `--cp=true` option to automate this process.
 
-## ကျွန်ုပ် အသုံးပြုပုံ
+## My Use Case
 
-- work folder ထဲမှာ system အလိုက် folder တွေ ဆောက်ထားတယ်။
-- ဥပမာ system1 , system2 အစ ရှိ သဖြင့်
-- system folder ထဲမှာ repo တွေ ရှိတယ်
-- api repo တို့ front end repo တို့ tool repo တို့ အစ ရှိသဖြင့်
-- အဲ့တော့ အရင် ဆုံး work ထဲကို `cd ~/Desktop/work` ဘာ ညာ ဆိုပြီးတော့ ဝင်လိုက်တယ်။
-- ပြီးတော့ အခု bash function လေးကို run လိုက်တယ်။
+For batch generation of YAML files for all projects in a directory, you can use the following shell function:
 
 ```bash
-mxgen(){
-for file in *; do
-  if [ -d "$file" ]; then
-    filenamelowercase=$(echo "$file" | tr '[:upper:]' '[:lower:]')
-    cd $file
-    mx-yml-gen --name=${filenamelowercase} --cp=true --mode=amk --editor=none
-    cd ..
-    echo $filenamelowercase
-  fi
-done
+mxgen() {
+  for file in *; do
+    if [ -d "$file" ]; then
+      filenamelowercase=$(echo "$file" | tr '[:upper:]' '[:lower:]')
+      cd "$file"
+      mx-yml-gen --name=${filenamelowercase} --cp=true --mode=amk --editor=none
+      cd ..
+      echo "$filenamelowercase"
+    fi
+  done
 }
 ```
-
-- အဲ့တာ ဆိုရင် ကိုယ် က system1 ကို ဖွင့် ကြည့်ချင် တယ် ဆိုရင်
-- `mx system1` လို့ ရိုက် ထည့်လိုက် တာ နဲ့ system1 နဲ့ ဆိုင် တဲ့ repo တွေ အကုန် ကျလာမယ်။
-- ကိုယ် ကြည့်ချင်တာ ကြည့် ပေါ့ ။
-
-_oki လား ညီမလေး။_
 
 ## License
 
